@@ -17,6 +17,7 @@ import s from './Layout.css';
 import Header from '../Header';
 import Feedback from '../Feedback';
 import Footer from '../Footer';
+import Navigation from '../Navigation';
 
 class Layout extends React.Component {
   static propTypes = {
@@ -26,10 +27,17 @@ class Layout extends React.Component {
   render() {
     return (
       <div>
-        <Header />
-        {this.props.children}
-        <Feedback />
-        <Footer />
+        <div className={s.layout}>
+          <div className={s.layout__content}>
+            <Header />
+            {this.props.children}
+            <Feedback />
+            <Footer />
+          </div>
+          <div className={s.layout__sidebar}>
+            <Navigation />
+          </div>
+        </div>
       </div>
     );
   }

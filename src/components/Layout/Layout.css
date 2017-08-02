@@ -185,3 +185,16 @@ textarea {
     page-break-after: avoid;
   }
 }
+
+.layout {
+  display: flex;
+  overflow-x: hidden;
+}
+
+.layout__content {
+  width: 100%;
+}
+
+.layout__sidebar {
+  width: 300px;
+}
