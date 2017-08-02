@@ -5,8 +5,8 @@ https://disqus.com/admin/create/
 #### `DisqusThread.js`
 
 ```js
-import React, { PropTypes } from 'react';
-import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const SHORTNAME = 'example';
 const WEBSITE_URL = 'http://www.example.com';
@@ -22,7 +22,7 @@ function renderDisqus() {
   }
 }
 
-class DisqusThread {
+class DisqusThread extends React.Component{
 
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -47,13 +47,11 @@ class DisqusThread {
   render() {
     let { id, title, path, ...other} = this.props;
 
-    if (canUseDOM) {
-      /* eslint-disable camelcase */
+    if (process.env.BROWSER) {
       window.disqus_shortname = SHORTNAME;
       window.disqus_identifier = id;
       window.disqus_title = title;
       window.disqus_url = WEBSITE_URL + path;
-      /* eslint-enable camelcase */
     }
 
     return <div {...other} id="disqus_thread" />;
@@ -70,7 +68,7 @@ export default DisqusThread;
 import React from 'react';
 import DisqusThread from './DisqusThread.js';
 
-class MyComponent {
+class MyComponent extends React.Component{
 
   render() {
     return (
